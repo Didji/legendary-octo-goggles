@@ -8,29 +8,43 @@ public class joueur : MonoBehaviour {
     public int life = 10;
     CharacterController char_cont;
     Vector3 init_pos;
+    Rigidbody rigibody;
+    private Vector3 moveDirection = Vector3.zero;
 
-	// Use this for initialization
-	void Start ()
+    // Constantes
+    float vitesse = 4f;
+    public float speed = 6.0F;
+    public float jumpSpeed = 20.0F;
+    public float gravity = 8.0F;
+    private int tempsApresLancer;
+
+    // Use this for initialization
+    void Start ()
     {
         char_cont = GetComponent<CharacterController>();
+        rigibody = GetComponent<Rigidbody>();
         life = 5;
         init_pos = transform.position;
-	}
+        tempsApresLancer = -1;
+
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (Input.GetAxis("Horizontal") > 0)
+        float deplacement = Input.GetAxis("Horizontal");
+        if (deplacement != 0)
         {
-            print(Input.GetAxis("Horizontal"));
 
-            //transform.position = new Vector3(transform.position.x + Input.GetAxis("Horizontal") * 2f * Time.deltaTime, transform.position.y, transform.position.z);
-            char_cont.Move(transform.right*Time.deltaTime*2f);//(new Vector3(transform.position.x + Input.GetAxis("Horizontal") * 0.01f * Time.deltaTime, transform.position.y, transform.position.z));
+            //transform.position = new Vector3(transform.position.x + deplacement * vitesse * Time.deltaTime, transform.position.y, transform.position.z);
+            char_cont.Move(transform.right*Time.deltaTime * deplacement * vitesse);//(new Vector3(transform.position.x + Input.GetAxis("Horizontal") * 0.01f * Time.deltaTime, transform.position.y, transform.position.z));
 
-
-        
         }
 
-        transform.position = new Vector3(transform.position.x, init_pos[1], init_pos[2]);
-	}
+        if (Input.GetButton("Jump")) {
+            moveDirection.y = jumpSpeed;
+            char_cont.Move(transform.up * Time.deltaTime * jumpSpeed);
+        }
+
+    }
 }
