@@ -22,8 +22,6 @@ public class joueur : MonoBehaviour {
     {
         if (Input.GetAxis("Horizontal") > 0)
         {
-            print(Input.GetAxis("Horizontal"));
-
             //transform.position = new Vector3(transform.position.x + Input.GetAxis("Horizontal") * 2f * Time.deltaTime, transform.position.y, transform.position.z);
             char_cont.Move(transform.right*Time.deltaTime*2f);//(new Vector3(transform.position.x + Input.GetAxis("Horizontal") * 0.01f * Time.deltaTime, transform.position.y, transform.position.z));
 

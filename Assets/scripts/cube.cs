@@ -18,9 +18,6 @@ public class cube : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-
-        print(_joueur.life);
-
-
+        
     }
 }
