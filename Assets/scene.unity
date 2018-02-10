@@ -554,7 +554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 10
-  source: {fileID: 0}
+  audioSource: {fileID: 1409534886}
   speed: 6
   jumpSpeed: 8
   gravity: 20
@@ -665,7 +665,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: de0c26e8701182a4fb7f8ce4453d349e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a1dd00527ff5234489a4f2a2bab36f7d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
