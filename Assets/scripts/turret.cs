@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turret : MonoBehaviour {
+public class turret : MonoBehaviour {
 
     private const int patrolLimit = 5;
     private CharacterController char_cont;
