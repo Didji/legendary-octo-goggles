@@ -19,8 +19,5 @@ public class cube : MonoBehaviour {
 	void Update ()
     {
 
-        print(_joueur.life);
-
-
     }
 }
