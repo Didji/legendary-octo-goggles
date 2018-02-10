@@ -10,6 +10,7 @@ public class joueur : MonoBehaviour {
     Vector3 init_pos;
     Rigidbody rigibody;
     private Vector3 moveDirection = Vector3.zero;
+    public AudioSource audioSource;
 
     // Constantes
     float vitesse = 0.05f;
@@ -31,17 +32,20 @@ public class joueur : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        CharacterController controller = GetComponent<CharacterController>();
-        if (controller.isGrounded)
+        if (char_cont.isGrounded)
         {
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
             moveDirection = transform.TransformDirection(moveDirection);
             moveDirection *= speed;
             if (Input.GetButton("Jump"))
+            {
+                audioSource.Play();
                 moveDirection.y = jumpSpeed;
+            }
+                
 
         }
         moveDirection.y -= gravity * Time.deltaTime;
-        controller.Move(moveDirection * Time.deltaTime);
+        char_cont.Move(moveDirection * Time.deltaTime);
     }
 }
