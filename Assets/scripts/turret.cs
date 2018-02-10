@@ -13,7 +13,7 @@ public class Turret : MonoBehaviour {
 	void Start () {
         startingPosition = transform.position;
         char_cont = GetComponent<CharacterController>();
-        speed = -2.0f;
+        speed = -1.0f;
     }
 	
 	// Update is called once per frame
