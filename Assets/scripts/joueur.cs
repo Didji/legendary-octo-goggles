@@ -12,11 +12,11 @@ public class joueur : MonoBehaviour {
     private Vector3 moveDirection = Vector3.zero;
 
     // Constantes
-    float vitesse = 4f;
+    float vitesse = 0.05f;
+    float force = 0.012f;
     public float speed = 6.0F;
-    public float jumpSpeed = 20.0F;
-    public float gravity = 8.0F;
-    private int tempsApresLancer;
+    public float jumpSpeed = 8.0F;
+    public float gravity = 20.0F;
 
     // Use this for initialization
     void Start ()
@@ -25,26 +25,23 @@ public class joueur : MonoBehaviour {
         rigibody = GetComponent<Rigidbody>();
         life = 5;
         init_pos = transform.position;
-        tempsApresLancer = -1;
 
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        float deplacement = Input.GetAxis("Horizontal");
-        if (deplacement != 0)
+        CharacterController controller = GetComponent<CharacterController>();
+        if (controller.isGrounded)
         {
-
-            //transform.position = new Vector3(transform.position.x + deplacement * vitesse * Time.deltaTime, transform.position.y, transform.position.z);
-            char_cont.Move(transform.right*Time.deltaTime * deplacement * vitesse);//(new Vector3(transform.position.x + Input.GetAxis("Horizontal") * 0.01f * Time.deltaTime, transform.position.y, transform.position.z));
+            moveDirection = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+            moveDirection = transform.TransformDirection(moveDirection);
+            moveDirection *= speed;
+            if (Input.GetButton("Jump"))
+                moveDirection.y = jumpSpeed;
 
         }
-
-        if (Input.GetButton("Jump")) {
-            moveDirection.y = jumpSpeed;
-            char_cont.Move(transform.up * Time.deltaTime * jumpSpeed);
-        }
-
+        moveDirection.y -= gravity * Time.deltaTime;
+        controller.Move(moveDirection * Time.deltaTime);
     }
 }
